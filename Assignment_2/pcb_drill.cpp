@@ -1,8 +1,10 @@
 #include <iostream>
 #include <cmath>
 #include <vector>
+#include <chrono>
 
 using namespace std;
+using namespace std::chrono;
 
 // function for calculating Euclidean distance between 2 points
 double dist(pair<double, double> p1, pair<double, double> p2) {
@@ -50,11 +52,20 @@ int main() {
 
     // solve for first 8 holes
     auto holes_8 = vector<pair<double, double>>(holes.begin(), holes.end() - 12);
+    auto start = high_resolution_clock::now();
     solve(holes_8);
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop - start);
+    cout << "Time taken by function: " << duration.count() << " microseconds\n\n";
+
 
     // solve for first 12 points
     auto holes_12 = vector<pair<double, double>>(holes.begin(), holes.end() - 8);
+    start = high_resolution_clock::now();
     solve(holes_12);
+    stop = high_resolution_clock::now();
+    duration = duration_cast<microseconds>(stop - start);
+    cout << "Time taken by function: " << duration.count() << " microseconds\n\n";
 
     return 0;
 }
