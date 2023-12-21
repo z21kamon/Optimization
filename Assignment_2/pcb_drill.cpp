@@ -1,3 +1,5 @@
+#pragma GCC optimize("O3")
+
 #include <iostream>
 #include <cmath>
 #include <vector>
@@ -57,7 +59,6 @@ int main() {
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<microseconds>(stop - start);
     cout << "Time taken by function: " << duration.count() << " microseconds\n\n";
-
 
     // solve for first 12 points
     auto holes_12 = vector<pair<double, double>>(holes.begin(), holes.end() - 8);
