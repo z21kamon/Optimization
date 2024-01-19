@@ -1,4 +1,5 @@
-def simplex_minimize(obj_vars_count, constraints, objective_function):
+def simplex_minimize(constraints, objective_function):
+    obj_vars_count = len(objective_function)
     matrix, artif_rows = construct_matrix(obj_vars_count, constraints)
     rows, cols = len(matrix), len(matrix[0])  # matrix dimensions
     basic_vars = [0 for _ in range(rows)]  # array of basic variables indices
@@ -123,11 +124,11 @@ constraints = ([1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1000
                [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 700, '<='],
                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 250, '<='],
                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 750, '<='])
-obj_vars_count = 20  # number of objective function variables
+
 slack_vars_count = 5  # number of slack variables to be added
 artif_vars_count = 4  # number of artificial variables to be added
 
-solution, optimize_val = simplex_minimize(obj_vars_count, constraints, obj_function_coefs)
+solution, optimize_val = simplex_minimize(constraints, obj_function_coefs)
 
 print(optimize_val)
 for i in range(len(solution)):
